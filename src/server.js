@@ -7,7 +7,7 @@ const { inserirEmpresa,buscarVagas,inserirVaga,logarEmpresa,inserirConcurso,busc
 const express = require('express');
 const cors = require('cors');
 const server = express();
-const port = process.env.PORT ||3000;
+const PORT = process.env.PORT ||3000;
 
 server.use(cors())
 server.use(express.json())
@@ -368,6 +368,6 @@ server.get('/Dados_Participantes_Concurso/:id',(req,res)=>{
     }})
 })
 
-server.listen(port,()=>{
-    console.log("Servidor conectado") 
+server.listen(PORT,()=>{
+    console.log(`Servidor conectado na porta: ${PORT}`) 
 })
