@@ -10,7 +10,7 @@ const server = express();
 const PORT = process.env.PORT ||3000;
 
 const corsOptions = {
-    origin: 'https://gameployee-front-end-deploy.vercel.app',
+    origin: 'https://gameployee.vercel.app/',
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
 }
 server.use(cors(corsOptions))
