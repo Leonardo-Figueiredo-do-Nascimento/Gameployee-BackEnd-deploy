@@ -9,7 +9,11 @@ const cors = require('cors');
 const server = express();
 const PORT = process.env.PORT ||3000;
 
-server.use(cors())
+const corsOptions = {
+    origin: 'https://gameployee-front-end-deploy.vercel.app',
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
+}
+server.use(cors(corsOptions))
 server.use(express.json())
   
 server.post('/Cadastro',(req,res)=>{
@@ -49,8 +53,6 @@ server.post('/Cadastro',(req,res)=>{
         res.status(400).json({ message: 'Requisição invalida' });
     }
 })
-
-//############      Fazer método get no postgres pra conseguir nome, pois o login precisa do nome e cargo ###############
 server.post('/Login',(req,res)=>{
     const data = req.body;
     
@@ -177,7 +179,6 @@ server.get('/Vagas_da_empresa/:nome',(req,res)=>{
         }
     })
 })
-
 server.get('/Concursos_da_empresa/:nome',(req,res)=>{
     const nomeEmpresa = req.params.nome
     buscarConcursosLocais(nomeEmpresa,async (err,result)=>{
@@ -194,7 +195,6 @@ server.get('/Concursos_da_empresa/:nome',(req,res)=>{
         }
     })
 })
-
 // GET de CANDIDATOS
 server.get('/Candidatos',(req,res)=>{
     buscarCandidatos(async (err,result)=>{
@@ -294,7 +294,6 @@ server.get('/Telefone/:id',(req,res)=>{
         }
     })
 })
-
 server.patch('/Mudar_Telefone/:id/:novoTelefone',(req,res)=>{
     const idUsuario = req.params.id
     const novoTelefone = req.params.novoTelefone
@@ -367,7 +366,6 @@ server.get('/Dados_Participantes_Concurso/:id',(req,res)=>{
             res.json({message:'Todos os trabalhos',dadosParticipantes:dadosParticipantes});
     }})
 })
-
 server.listen(PORT,()=>{
     console.log(`Servidor conectado na porta: ${PORT}`) 
 })
